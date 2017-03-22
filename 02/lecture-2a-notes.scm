@@ -1,5 +1,7 @@
+;; PART I
+
 ; TODO: Need to define or import square
-; BOOKMARK: 03/21/17 stopped at 22:30, halfway through lecture
+; BOOKMARK: 03/21/17 stopped at 27:28, halfway through lecture
 
 (define (sum-int a b)
   (if (> a b)
@@ -89,6 +91,35 @@
         (iter (next j)
               (+ (term j) ans))))
   (iter a ))
+
+
+;; PART II
+
+; Returning to Huron on Alexandria’s method for computing
+; the square root of a number:
+(define (sqrt x)
+  (define tolerance 0.00001)
+  (define (good-enough? y)
+    (< (abs (- (y * y) x)) tolerance))
+  (define (improve y)
+    (average (/ x y) y))
+  (define (try y)
+    (if (good-enough? y)
+      y
+      (try (improve y))))
+  (try 1))
+; Wait, is this the iterative or recursive solution?
+; It looks like an iterative one (TRY)
+
+
+; NEW IDEA: Fixed-Point - “Look for a fixed-point of function ƒ”
+
+; Definition:
+; “A place which has the property that if you put it into
+; the function, you get the same value out”
+
+; For example:
+; ƒ(√x) = √x
 
 
 
