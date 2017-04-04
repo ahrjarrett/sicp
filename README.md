@@ -12,4 +12,4 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 3. Solutions to Chapter 3 Problemsets
 
 ### Bookmarks:
-- 04/04/17 Lecture 2B (Compound Data): 1/2 way done @ **28:18**
+- 04/04/17 Lecture 2B (Compound Data): 1/3 way done @ **40:47**
