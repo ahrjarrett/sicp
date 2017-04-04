@@ -12,4 +12,5 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 3. Solutions to Chapter 3 Problemsets
 
 ### Bookmarks:
-- 04/04/17 Lecture 2B (Compound Data): 1/3 way done @ **40:47**
+- 03/28/17 Finished Lecture 2A Notes (Lambda Functions & Fixed Points)
+- 04/04/17 Finished Lecture 2B Notes (Compound Data & Abstraction Layers)
