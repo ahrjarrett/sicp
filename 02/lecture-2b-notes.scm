@@ -1,5 +1,8 @@
 ; LECTURE 2B: COMPOUND DATA
 
+
+;; PART 1:
+
 ; (cons x y)
 ; constructs a pair where the first part is x, 2nd part is y
 ; (car p)
@@ -72,4 +75,87 @@
 ; define will, from definition on, bind a value to another one
 ; let will create a local definition
 
-; BOOKMARK: 40:47 on 04/04/17
+
+;; PART 3:
+
+; a good analogue to MAKE-RAT might be MAKE-POINT,
+; where the car and cdr represent x and y coordinates
+; (or vectors in the plane):
+(define (make-vector x y) (cons x y))
+(define (xcor p) (car p))
+(define (xcor p) (cdr p))
+
+; and maybe we want to build a SEGMENT in terms of vectors,
+; make up of two points, p and q:
+(define (make-seg p q) (cons p q))
+(define (seg-start s) (car s))
+(define (seg-end s) (cdr s))
+
+; and what if we wanted the MIDPOINT of a segment s?
+(define (midpoint s)
+  (let ((a (seg-start s))
+        (b (seg-end s)))
+    (make-vector
+      (average (xcor a) (xcor b))
+      (average (ycor a) (ycor b)))))
+      ; basically the let statement is destructuring the segment right?
+
+; and then if we wanted to compute the length of the segment:
+; Using Pythagorean Theorem: √(dx * dx + dy * dy)
+(define (length s)
+  (let
+   ((dx (- (xcor (seg-end s))
+           (xcor (seg-start s))))
+    (dy (- (ycor (seg-end s))
+           (ycor (seg-start s)))))
+   (sqrt (+ (square dx)
+           (square dy)))))
+
+; as above, here is the abstraction barrier:
+
+; SEGMENTS
+; ===============================
+;   make-seg/seg-start/seg-end     <-- “abstraction layer”
+; ===============================
+; VECTORS
+; =========================
+;   make-vector/xcor/ycor   <-- “abstraction layer”
+; =========================
+; PAIRS
+
+; the idea of CLOSURE is very important here,
+; i.e. a pair of a pair is closed over by
+; the pair context above
+; (notice the slightly different definition
+; of closure...or is it really different?)
+
+
+;; PART 4:
+; this part is going to be harder, where we’ll be talking about
+; “what it means when” we have these data abstractions
+
+; for example, returning to the axion for pairs:
+(car (cons x y)) ; => x
+(crd (cons x y)) ; => y
+
+; but we’re never told what a pair REALLY is.
+
+; “pairs can be built out of nothing at all” <-- huh?
+
+; for example, if we were to implement cons, car & cdr:
+; we have a procedure that returns a procedure
+(define (cons a b)
+  (lambda (pick)
+    (cond ((= pick 1) a)
+          ((= pick 2) b))))
+(define (car x) (x 1))
+(define (cdr x) (x 2))
+
+; notice that there are no data objects in any of these
+; procedures. I’m creating them out of thin air.
+; all I have to do is fulfill the axiom.
+
+; READ THAT AGAIN, SLOWLY.
+
+; this is where we start blurring the lines
+; between what is data, and what is a procedure.
