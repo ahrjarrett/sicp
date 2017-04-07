@@ -136,7 +136,7 @@
 
 ; for example, returning to the axion for pairs:
 (car (cons x y)) ; => x
-(crd (cons x y)) ; => y
+(cdr (cons x y)) ; => y
 
 ; but we’re never told what a pair REALLY is.
 
