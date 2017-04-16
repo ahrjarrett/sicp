@@ -44,7 +44,7 @@
     ; let’s say we wanted to access 3:
 (car (cdr (cdr 1-to-4))) ; => 3
     ; what if we want an empty list?
-(car (cdr (cdr 1-to-4))) ; => ()
+(cdr (cdr (cdr (cdr 1-to-4))) ; => (), an empty list
 
 ; we can write procedures that operate on every member of a list (a functor right?)
 ; what if we wrote something list this:
