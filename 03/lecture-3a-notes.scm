@@ -1,4 +1,4 @@
-; LECTURE 3B: [title]
+; LECTURE 3B: HIGHER-ORDER PROCEDURES, METALINGUISTIC ABSTRACTION & CLOSURE
 
 
 
@@ -98,8 +98,30 @@
 
 
 
-; PART II: [title]
+; PART II: METALINGUISTIC ABSTRACTION
 
+; This is the idea that one of the major ways to combat complexity
+; in design is to build a suitable, powerful language.
+
+; This is the 3rd major theme in this course.
+; 3 MAJOR THEMES:
+;   1 - PRIMITIVES
+;   2 - MEANS OF COMBINATION
+;   3 - MEANS OF ABSTRACTION
+
+; An example of abstraction is a language that was created by
+; a dude named Peter Henderson at the U of Sterling in Scotland
+
+; 1 - Primitive is a ‘picture’, and that’s it.
+
+; 2 - The rest is a combination of procedures,
+; blurring the line btwn procedures & data.
+; This is possible b/c of CLOSURE, each procedure
+; closing over new picture.
+
+; 3 - Implicit in the idea of a picture is a type of abstraction,
+; the idea of how we build rectangles. So we can make a constructor,
+; MAKE-RECT that is made by properties like horizontal, vertial, & origin.
 
 
 

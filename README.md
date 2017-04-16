@@ -14,4 +14,4 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 ### Bookmarks:
 - 03/28/17 Finished Lecture 2A Notes (Lambda Functions & Fixed Points)
 - 04/04/17 Finished Lecture 2B Notes (Compound Data & Abstraction Layers)
-- 04/16/17 Finished Lecture 3B Notes (starting part II at 28:11)
+- 04/16/17 42:42 of Lecture 3B Notes (Higher-Order Procedures & Metalinguistic Abstraction)
