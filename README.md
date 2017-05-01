@@ -15,4 +15,4 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 - 03/28/17 Finished Lecture 2A Notes (Lambda Functions & Fixed Points)
 - 04/04/17 Finished Lecture 2B Notes (Compound Data & Abstraction Layers)
 - 04/16/17 42:42 of Lecture 3A Notes (Higher-Order Procedures & Metalinguistic Abstraction)
-- 04/18/17 7:33 of Lecture 3B (Derivatives and Reduction)
+- 05/01/17 14:34 of Lecture 3B Notes (Derivatives and Reduction)
