@@ -1,5 +1,7 @@
 ; LECTURE 3B:
 
+; PART I: DERIVATIVES & REDUCTION
+
 ; “You solve a class of problems that are in the neighborhood of the problem you want to solve”
 ; How to use embedding of languages, the power of which come from procedures like define deriv:
 
@@ -78,3 +80,35 @@
 
 (define m1 cadr)
 (define m2 caddr)
+
+
+
+
+;; PART 2: SYMBOLIC DIFFERENTIATION: QUOTATION
+
+;; Regarding the messy output of running DERIV on
+;; a procedure called foo--lots of unnecessary and
+;; repeated computations:
+
+;; "The procedure represents a set of local rules for
+;; the expansion of the process, and here the process
+;; left behind some stuff that was the answer, and it
+;; was constructed by the walk it takes of the
+;; tree structure, which is the expression."
+
+;; Rewriting MAKE-SUM:
+
+(define (make-sum a1 a2)
+  (cond ((and (number? a1)
+              (number? a2))
+         (+ a1 a2))
+        ((and (number? a1) (= a1 0))
+         a2)
+        ((and (number? a2) (= a2 0))
+         a1)
+        (else (list '+ a1 a2))))
+
+;; now DERIV of FOO with respect to X is much more succinct:
+;; => (+ (* a (* x x)) b)
+
+;; "I've chosen my representation to be the same as the representation in my language of similar things. By doing so, I've invoked the necessity, I've created the necessity, to have things like quotation. Because of the fact that my language is capable of writing expressions that talk about expressions of the language, I need ot have something that says, 'This is the expression that I'm talking about', rather than, 'This expression is talking about something, and I want to talk about that'"
