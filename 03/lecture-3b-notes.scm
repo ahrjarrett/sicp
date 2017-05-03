@@ -83,8 +83,7 @@
 
 
 
-
-;; PART 2: SYMBOLIC DIFFERENTIATION: QUOTATION
+;; PART II: SYMBOLIC DIFFERENTIATION: QUOTATION
 
 ;; Regarding the messy output of running DERIV on
 ;; a procedure called foo--lots of unnecessary and
@@ -111,4 +110,10 @@
 ;; now DERIV of FOO with respect to X is much more succinct:
 ;; => (+ (* a (* x x)) b)
 
-;; "I've chosen my representation to be the same as the representation in my language of similar things. By doing so, I've invoked the necessity, I've created the necessity, to have things like quotation. Because of the fact that my language is capable of writing expressions that talk about expressions of the language, I need ot have something that says, 'This is the expression that I'm talking about', rather than, 'This expression is talking about something, and I want to talk about that'"
+;; "I've chosen my representation to be the same as the representation
+;; in my language of similar things. By doing so, I've invoked the
+;; necessity, I've created the necessity, to have things like quotation.
+;; Because of the fact that my language is capable of writing expressions
+;; that talk about expressions of the language, I need ot have something
+;; that says, 'This is the expression that I'm talking about', rather
+;; than, 'This expression is talking about something, and I want to talk about that'"
