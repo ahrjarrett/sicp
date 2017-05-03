@@ -19,41 +19,62 @@
 ; recursion to work. but going left, it doesn't work the same.
 ; and when I go left, I don't have any guarantee that any particular path with terminate.
 
-; below: a1 and a2 refer to
 ; WATCH VIDEO AGAIN: 10:00 to 13:00 to get this correct...
 ; also, is this function also called deriv?
+
 (define (deriv exp var)
   (cond ((constant? exp var) 0)
         ((same-var? exp var) 1)
         ((sum? exp)
-         (make-sum (deriv (a1 exp) var)
-                   (deriv (a2 exp) var)))
+         (make-sum (deriv (addend exp) var)
+                   (deriv (augend exp) var)))
         ((product? exp)
          (make-sum
           (make-product (m1 exp)
                         (deriv (m2 exp) var))
           (make-product (deriv (m1 exp) var)
-                        (m2 exp))))))
+                        (m2 exp))))
+        ; etc...
+        ; ...
+        ; ...
+        ; ...
+        ))
 
 
 ; Procedures are list structure, where the operator is the CAR
-; and the operands are the successive CARs of the CDRs
+; and the operands are the successive CARs of the CDRs.
+; So let's start breaking deriv into parts:
 
-; 05/01/17: Left off at 14:00
+(define constant? exp var
+  (and (atom? exp)
+       (not (eq? exp var))))
 
+(define (same-var? exp var)
+  (and (atom? exp)
+       (eq? exp var)))
 
+; NEW SYNTAX: quotation mark before an operator
+; "Quotation is a very complex topic."
+(define (sum? exp)
+  (and (not (atom? exp))
+       (eq? (car exp) '+)))
 
+; NEW PRIMITIVE:
+; CADR is the CAR of the CDR of something.
+(define (make-sum a1 a2)
+  (list '+ a1 a2))
 
+; CADR -> CAR of the CDR (the CAR being the + operator in the list)
+; CADDR -> CAR of the CDR of the CDR... and so on
+(define a1 cadr)
+(define a1 caddr)
 
+(define (product? exp)
+  (and (not (atom? exp)
+            (eq? (car exp) '*))))
 
+(define (make-product m1 m2)
+  (list '* m1 m2))
 
-
-
-
-
-
-
-
-
-
-
+(define m1 cadr)
+(define m2 caddr)
