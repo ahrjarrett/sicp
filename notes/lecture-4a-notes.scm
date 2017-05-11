@@ -128,10 +128,101 @@
 
 
 
-;; PART II:
+;; PART II: The Matcher
 
-;; Bookmark 24:00
+;; MATCHER FUNCTION takes a dictionary, a pattern and an expression that
+;; is matched against the pattern.
+
+;; Seen from a high-level perspective:
+(define (match pat exp dict)
+  (cond ((eq? dict 'failed) 'failed)
+        ((atom? pat)
+         ... Atomic patterns)
+        ... Pattern variable clauses
+        ((atom? exp) 'failed)
+        (else
+         (match (cdr pat)
+                (cdr exp)
+                (match (car pat)
+                       (car exp)
+                       dict)))))
+
+;; Atomic Pattern:
+((atom? pat)
+ (if (atom? exp)
+     (if (eq? pat exp)
+         dict
+         'failed)
+     'failed))
+
+;; 3 kinds of Pattern Variables:
+;;    1) arbitrary-constants
+;;    2) arbitrary-variables
+;;    3) arbitrary-expressions
+((arbitrary-constant? pat)
+ (if (constant? exp)
+     (extend-dict pat exp dict)
+     'failed))
+((arbitrary-variable? pat)
+ (if (variable? exp)
+     (extend-dict pat exp dict)
+     'failed))
+((arbitrary-expression? pat)
+ (extend-dict pat exp dict))
+
+;; MATCH, now all put together:
+(define (match pat exp dict)
+  (cond ((eq? dict 'failed) 'failed)
+        ((atom? pat)
+         (if (atom? exp)
+             (if (eq? pat exp)
+                 dict
+                 'failed)
+             'failed))
+        ((arbitrary-constant? pat)
+         (if (constant? exp)
+             (extend-dict pat exp dict)
+             'failed))
+        ((arbitrary-variable? pat)
+         (if (variable? exp)
+             (extend-dict pat exp dict)
+             'failed))
+        ((arbitrary-expression? pat)
+         (extend-dict pat exp dict))
+        ((atom? exp) 'failed)
+        (else
+         (match (cdr pat)
+                (cdr exp)
+                (match (car pat)
+                       (car exp)
+                       dict)))))
+
+
+;; INSTANTIATOR:
+(define (instantiate skeleton dict)
+  (define (loop s)
+    (condo ((atom? s) s)
+           ((skeleton-evaluation? s)
+            (evaluate (eval-exp s) dict))
+           (else (cons (loop (car s))
+                       (loop (cdr s))))))
+  (loop skeleton))
+
+
+;; EVALUATE:
+(define (evaluate form dict)
+  (if (atom? form)
+      (lookup form dict)
+      (apply
+       (eval (lookup (car form) dict)
+             user-initial-environment)
+       (mapcar (lambda (v)
+                 (lookup v dict))
+               (cdr form)))))
 
 
 
+;; PART III: The Simplifier
+
+;; Bookmark: 49:00 05/10/17
 

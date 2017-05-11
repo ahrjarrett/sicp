@@ -17,4 +17,4 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 - 04/16/17 42:42 of Lecture 3A Notes (Higher-Order Procedures & Metalinguistic Abstraction)
 - 05/01/17 14:34 of Lecture 3B Notes (Derivatives and Reduction)
 - 05/03/17 Finished Part II of Lecture 3B Notes (Symbolic Differentiation: Quotation)
-- 05/10/17 Part II (24:00) of Lecture 4A Notes (Pattern Matching & Substitution)
+- 05/10/17 Part III (49:00) of Lecture 4A Notes (Pattern Matching & Substitution)
