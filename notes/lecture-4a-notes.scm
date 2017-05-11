@@ -224,5 +224,77 @@
 
 ;; PART III: The Simplifier
 
-;; Bookmark: 49:00 05/10/17
+;; High-level view:
+(define (simplifier the-rules)
+  (define (simplify-exp exp)
+    ...)
+  (define (simplify-parts exp)
+    ...)
+  (define (try-rules exp)
+    ...)
+  simplify-exp)
+
+;; SIMPLIFY-EXP:
+(define (simplify-exp exp)
+  (try-rules (if (compound? exp)
+                 (simplify-parts exp)
+                 exp)))
+
+;; SIMPLIFY-PARTS:
+(define (simplify-parts exp)
+  (if (null? exp)
+      '()
+      (cons (simplify-exp (car exp)))))
+
+;; Or we could just use a higher-order procedure to
+;; rewrite simplify-exp w/o CONS'ing the parts, using map:
+(define (simplify-exp exp)
+  (try-rules (if compound? exp)
+             (map simplify-exp exp)
+             exp))
+
+
+;; TRY-RULES
+;; Turns out TRY-RULES is a mess too, here's the high-level view:
+(define (try-rules exp)
+  (define (scan rules)
+    ...)
+  (scan the-rules))
+
+;; SCAN
+(define (scan rules)
+  (if (null? rules)
+      exp
+      (let ((dict
+             (match (pattern (car rules))
+                    exp
+                    (empty-dictionary))))
+        (if (eq? dict 'failed)
+            (scan (cdr rules))
+            (simplify-exp
+              (instantiate
+                (skeleton (car rules))
+                dict))))))
+
+
+;; DICTIONARY
+;; Again, this is "George's job" to implement, but so we can begin
+;; to understand what a dictionary is, here's what's under the covers:
+(define (empty-dictionary) '())
+
+(define (extend-dictionary pat dat dict)
+  (let ((name (variable-name pat)))
+    (let ((v (assq name dict)))
+      (cond ((null? v)
+             (cons (list name dat) dict))
+            ((eq? (cadr v) dat) dict)
+            (else 'failed)))))
+
+(define (lookup var dict)
+  (let ((v (assq var dict)))
+    (if (null? v) var (cadr v))))
+
+
+;; THOUGHTS (05/10/17):
+;; Phew. Everything still feels like "magic".
 
