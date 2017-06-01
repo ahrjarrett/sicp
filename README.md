@@ -19,3 +19,4 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 - 05/03/17 Finished Part II of Lecture 3B Notes (Symbolic Differentiation: Quotation)
 - 05/10/17 Part III (49:00) of Lecture 4A Notes (Pattern Matching & Substitution)
 - 05/28/17 Bookmarked 12:43 of Lecture 4B (Generic Operators)
+- 06/01/17 Bookmarked 26:02 of Lecture 4B (Generic Operators)
