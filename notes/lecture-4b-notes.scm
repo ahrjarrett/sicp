@@ -138,7 +138,19 @@
 ;; This strategy, of dispatching generic operators, has a name.
 ;; It's called "Dispatch on Type"
 
- 
+;; Installing the rectangular operations in the table
+;; (See ../problems/put.scm for notes on this implementation of PUT):
+(define (put op type item)
+  (define (put-helper k array)
+    (cond ((null? array) (list (make-entry k item)))
+          ((equal? (key (car array)) k) array)
+          (else (cons (car array) (put-helper k (cdr array))))))
+  (set! global-array (put-helper (list op type) global-array)))
+
+(put 'rectangular 'real-part real-part-rectangular)
+(put 'rectangular 'imag-part imag-part-rectangular)
+(put 'rectangular 'magnitude magnitude-rectangular)
+(put 'rectangular 'angle angle-rectangular)
 
 
 
