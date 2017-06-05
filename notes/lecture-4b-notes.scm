@@ -133,6 +133,14 @@
           (contents z)))))
 
 
+;; PART II:
+
+;; This strategy, of dispatching generic operators, has a name.
+;; It's called "Dispatch on Type"
+
+ 
+
+
 
 
 

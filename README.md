@@ -4,7 +4,8 @@ These are notes and solutions to the problemsets from [“Structure and Interpre
 
 ## TODO:
 - ~~Run files from emacs, edit them in Vim?~~
-- Run files from REPL for now with `(load "filename.scm")`
+- ~~Run files from REPL for now with `(load "filename.scm")`~~
+- Run files in Spacemacs (install the scheme microlayer)
 
 ### TOC:
 1. Solutions to Chapter 1 Problemsets (1-10)
